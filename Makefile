@@ -12,18 +12,20 @@
 
 COMPILER = 	cc
 CFLAGS = 	-Wall -Wextra -Werror
-NAME = 		libftprintf.a
-SRCS =		
+NAME = 		so_long
+SRCS =		final.c
 
 OBJS = $(SRCS:.c=.o)
+
+MLX = ./minilibx-linux
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -L$(MLX) -lmlx -lXext -lX11 -lm -lz -o $(NAME)
 
 %.o: %.c
-	$(COMPILER) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(MLX) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
@@ -34,3 +36,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+

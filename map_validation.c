@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <fcntl.h>
-#include <stdlib.h>
+#include "solong.h"
 
 int	is_allowed(char c)
 {
@@ -27,17 +25,14 @@ int	is_allowed(char c)
 	return (0);
 }
 
-int	counter_check(char **map)
+int	counter_check(char **map, int *counter_p, int *counter_c, int *counter_e)
 {
 	int		height;
 	int		width;
-	int		counter_p;
-	int		counter_c;
-	int		counter_e;
 
-	counter_p = 0;
-	counter_c = 0;
-	counter_e = 0;
+	*counter_p = 0;
+	*counter_c = 0;
+	*counter_e = 0;
 	height = 0;
 	while (map[height])
 	{
@@ -45,16 +40,16 @@ int	counter_check(char **map)
 		while (map[height][width])
 		{
 			if (map[height][width] == 'P')
-				counter_p++;
+				*(counter_p)++;
 			else if (map[height][width] == 'C')
-				counter_c++;
+				*(counter_c)++;
 			else if (map[height][width] == 'E')
-				counter_e++;
+				*(counter_e)++;
 			width++;
 		}
 		height++;
 	}
-	if (!(counter_p == 1 && counter_c >= 1 && counter_e == 1))
+	if (!(*counter_p == 1 && *counter_c >= 1 && *counter_e == 1))
 		return (perror("Invalid number of P/C/E"), 0);
 	return (1);
 }
@@ -76,8 +71,6 @@ int	char_check(char **map)
 		}
 		height++;
 	}
-	// if (!(counter_check(map[height][width])))
-	// 	return (perror("Invalid character in map:"), 0);
 	return (1);
 }
 
@@ -88,15 +81,14 @@ int	shape_check(char **map)
 	int	width_len;
 
 	height = 0;
+	width_len = ft_strlen(map[0]) - 1;
 	while (map[height])
 	{
-		width = 0;
-		while (map[height][width])
-			width++;
+		if (((int)ft_strlen(map[height]) - 1) != width_len)
+			return(perror("Map is not rectangle"), 0);
 		height++;
-		if (strl)
 	}
-	//bo ngo
+	return (1);
 }
 
 int	wall_check(char **map)
@@ -104,29 +96,35 @@ int	wall_check(char **map)
 	int	height;
 	int	width;
 	int	i;
+	int	len;
 
 	height = 0;
 	while (map[height])
-	{
-		width = 0;
-		while (map[height][width])
-			width++;
 		height++;
-	}
+	width = 0;
+	while (map[0][width] && map[0][width] != '\n')
+		if (map[0][width++] != '1')
+			return (perror("Invalid wall:"), 0);
+	width = 0;
+	while (map[height - 1][width] && map[height][width] != '\n')
+		if (map[height - 1][width++] != '1')
+			return (perror("Invalid wall:"), 0);
 	i = 1;
-	while (i < height)
+	len = ft_strlen(map[height]) - 1;
+	while (i < (height - 1))
 	{
-		if (!(map[i][0] == '1' && map[i][width] == '1'))
+		if (map[i][0] != '1' || map[i][len - 1] != '1')
 			return (perror("Invalid wall:"), 0);
 		i++;
 	}
-	width = 0;
-	while (map[0][width] && map[height][width])
-	{
-		if (!(map[0][width] == '1' && map[height][width] == '1'))
-			return (perror("Invalid wall:"), 0);
-		width++;
-	}
+	return (1);
+}
+
+int	map_check(char **map)
+{
+	if (!(counter_check && char_check && wall_check && shape_check))
+		return (perror(""), 0);
+	return (1);
 }
 
 

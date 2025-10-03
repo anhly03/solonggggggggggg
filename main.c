@@ -10,6 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "solong.h"
+#include "get_next_line.h"
+
+void	find_player(char **map, int *px, int *py)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (map[y])
+	{	
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == 'P')
+			{
+				*px = x;
+				*py = y;
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
 int	main(void)
 {
 	int		fd;
@@ -18,6 +44,8 @@ int	main(void)
 	int		width;
 	char	**map;
 	int		i;
+	int		*px;
+	int		*py;
 
 	fd = open("file.ber", O_RDONLY);
 	if (fd == -1)
@@ -47,9 +75,13 @@ int	main(void)
 		i++;
 	}
 	map[i] = NULL;
-	if (check_map(map)) //validate map, contains 01CPE or not?
-		return (1);
 	close (fd);
+	if (!(map_check(map)))
+	{	
+		free (map);	
+		return (1);
+	}
+	find_player(map, &px, &py);
 
 	return (0);
 }
