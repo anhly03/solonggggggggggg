@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1.c                                                :+:      :+:    :+:   */
+/*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phly <phly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 18:53:11 by phly              #+#    #+#             */
-/*   Updated: 2025/09/24 15:55:32 by phly             ###   ########.fr       */
+/*   Updated: 2025/10/04 18:22:10 by phly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	shape_check(char **map)
 	while (map[height])
 	{
 		if (((int)ft_strlen(map[height]) - 1) != width_len)
-			return(perror("Map is not rectangle"), 0);
+			return (perror("Map is not rectangle"), 0);
 		height++;
 	}
 	return (1);
