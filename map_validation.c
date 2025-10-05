@@ -6,7 +6,7 @@
 /*   By: phly <phly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 18:53:11 by phly              #+#    #+#             */
-/*   Updated: 2025/10/04 18:22:10 by phly             ###   ########.fr       */
+/*   Updated: 2025/10/05 18:27:33 by phly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int	counter_check(char **map, int *counter_p, int *counter_c, int *counter_e)
 		while (map[height][width])
 		{
 			if (map[height][width] == 'P')
-				*(counter_p)++;
+				(*counter_p)++;
 			else if (map[height][width] == 'C')
-				*(counter_c)++;
+				(*counter_c)++;
 			else if (map[height][width] == 'E')
-				*(counter_e)++;
+				(*counter_e)++;
 			width++;
 		}
 		height++;
@@ -79,14 +79,34 @@ int	shape_check(char **map)
 	int	height;
 	int	width;
 	int	width_len;
+	int	current_len;
 
 	height = 0;
-	width_len = ft_strlen(map[0]) - 1;
+	width_len = ft_strlen(map[0]);
 	while (map[height])
 	{
-		if (((int)ft_strlen(map[height]) - 1) != width_len)
+		current_len = ft_strlen(map[height]);
+		if (map[height][current_len - 1] == '\n')
+			current_len--;
+		if (map[0][width_len - 1] == '\n')
+			width_len--;
+		if (current_len != width_len)
 			return (perror("Map is not rectangle"), 0);
 		height++;
+	}
+	return (1);
+}
+
+int	check_top_bottom(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && line[i] != '\n')
+	{
+		if (line[i] != '1')
+			return (perror("Invalid wall"), 0);
+		i++;
 	}
 	return (1);
 }
@@ -109,8 +129,10 @@ int	wall_check(char **map)
 	while (map[height - 1][width] && map[height][width] != '\n')
 		if (map[height - 1][width++] != '1')
 			return (perror("Invalid wall:"), 0);
+	len = ft_strlen(map[0]);
+	if ((map[0][len - 1]) == '\n')
+		len--;
 	i = 1;
-	len = ft_strlen(map[height]) - 1;
 	while (i < (height - 1))
 	{
 		if (map[i][0] != '1' || map[i][len - 1] != '1')
@@ -119,12 +141,4 @@ int	wall_check(char **map)
 	}
 	return (1);
 }
-
-int	map_check(char **map)
-{
-	if (!(counter_check && char_check && wall_check && shape_check))
-		return (perror(""), 0);
-	return (1);
-}
-
 
