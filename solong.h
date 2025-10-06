@@ -17,6 +17,12 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_ESC 53
+
 typedef struct s_game
 {
 	void	*mlx;
@@ -29,6 +35,10 @@ typedef struct s_game
 	char	**map;
 	int		width;
 	int		height;
+	int		x_pos;
+	int		y_pos;
+	int		c_count;
+	int		steps;
 }	t_game;
 
 int	counter_check(char **map, int *counter_p, int *counter_c, int *counter_e);

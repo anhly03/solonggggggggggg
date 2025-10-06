@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "mlx.h"
 #include "solong.h"
 
 int	map_check(char **map)
@@ -45,42 +46,36 @@ int	free_map(char **map)
 	}
 	free(map);
 }
-int	read_map(t_game *game, char *file_name)
+char	**read_map(char *file_name)
 {
-	char	*line;
-	int		i;
-	int		fd;
+	int	fd;
+	char *line;
+	t_game game;
 
-	fd = open_map(file_name);
-	if (fd == -1)
-		return (1);
-	line = get_next_line(fd);
-	game->height = 0;
-	while (line != NULL)
+	game.height = 0;
+	fd = open(file_name, O_RDONLY);
+	if (fd < 0)
+		return (perror("Error opening file"), NULL);
+	while ((line = get_next_line(fd)))
 	{
+		game.height++;
 		free(line);
-		game->height++;
-		line = get_next_line(fd);
 	}
+	close(fd);
+	game.map = malloc(sizeof(char*) * (game.height + 1));
+	if (!game.map)
+		return (NULL);
+	fd = open(file_name, O_RDONLY);
+	if (fd < 0)
+		return (perror("Error opening file"), NULL);
+	game.height = 0;
+	while ((line = get_next_line(fd)))
+		game.map[game.height++] = line;
+	game.map[game.height] = NULL;
 	close (fd);
-	game->map = malloc(sizeof(char *) *(game->height + 1));
-	if (!game->map)
-		return (printf("Malloc error\n"), 1);
-	fd = open_map(file_name);
-	if (fd == -1)
-		return (1);
-	line = get_next_line(fd);
-	i = 0;
-	while (line != NULL)
-	{
-		game->map[i] = ft_strdup(line);
-		free(line);
-		line = get_next_line(fd);
-		i++;
-	}
-	game->map[i] = NULL;
-	close (fd);
-	if (!(map_check(game->map)))
-		return (free (game->map), 1);
-	return (0);
+	return (game.map);
 }
+
+
+
+

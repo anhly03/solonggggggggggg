@@ -1,3 +1,4 @@
+#include "mlx.h"
 #include "solong.h"
 
 void	find_player(char **map, int *x_pos, int *y_pos)
@@ -100,4 +101,3 @@ int valid_path_check(char **map)
     free_map(map_copied);
     return (result);
 }
-

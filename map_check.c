@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "mlx.h"
 #include "solong.h"
 
 int	counter_check(char **map, int *counter_p, int *counter_c, int *counter_e)
