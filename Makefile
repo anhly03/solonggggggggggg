@@ -18,6 +18,8 @@ SRCS =		final.c
 OBJS = $(SRCS:.c=.o)
 
 MLX = ./minilibx-linux
+GNL = ./get_next_line
+PRINTF = ./ft_printf
 
 all: $(NAME)
 
