@@ -19,29 +19,6 @@ int	map_check(char **map)
 	return (1);
 }
 
-void	find_player(char **map, int *px, int *py)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (map[y])
-	{	
-		x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == 'P')
-			{
-				*px = x;
-				*py = y;
-				return ;
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
 int	open_map(char *file_name)
 {
 	int	fd;
@@ -54,7 +31,20 @@ int	open_map(char *file_name)
 	}
 	return (fd);
 }
+int	free_map(char **map)
+{
+	int	i;
 
+	i = 0;
+	if (!map)
+		return ;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
 int	read_map(t_game *game, char *file_name)
 {
 	char	*line;

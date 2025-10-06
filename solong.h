@@ -31,7 +31,6 @@ typedef struct s_game
 	int		height;
 }	t_game;
 
-int	is_allowed(char c);
 int	counter_check(char **map, int *counter_p, int *counter_c, int *counter_e);
 int	char_check(char **map);
 int	shape_check(char **map);

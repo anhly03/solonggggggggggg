@@ -12,19 +12,6 @@
 
 #include "solong.h"
 
-int	is_allowed(char c)
-{
-	char	*allowed;
-	int		i;
-
-	allowed = "01CPE\n";
-	i = 0;
-	while (allowed[i])
-		if (c == allowed[i++])
-			return (1);
-	return (0);
-}
-
 int	counter_check(char **map, int *counter_p, int *counter_c, int *counter_e)
 {
 	int		height;
@@ -56,8 +43,11 @@ int	counter_check(char **map, int *counter_p, int *counter_c, int *counter_e)
 
 int	char_check(char **map)
 {
-	int	height;
-	int	width;
+	int		height;
+	int		width;
+	int		i;
+	char	*allowed;
+	int		check;
 
 	height = 0;
 	while (map[height])
@@ -65,8 +55,13 @@ int	char_check(char **map)
 		width = 0;
 		while (map[height][width])
 		{
-			if (map[height][width] != '\n' && !is_allowed(map[height][width]))
-				return (perror("Invalid character in map:"), 0);
+			i = 0;
+			check = 0;
+			while (allowed[i])
+				if (map[height][width] == allowed[i++])
+					check = 1;
+			if (!check && map[height][width] != '\n')
+				return (perror("Invalid character"), 0);
 			width++;
 		}
 		height++;
@@ -126,7 +121,7 @@ int	wall_check(char **map)
 		if (map[0][width++] != '1')
 			return (perror("Invalid wall:"), 0);
 	width = 0;
-	while (map[height - 1][width] && map[height][width] != '\n')
+	while (map[height - 1][width] && map[height - 1][width] != '\n')
 		if (map[height - 1][width++] != '1')
 			return (perror("Invalid wall:"), 0);
 	len = ft_strlen(map[0]);
