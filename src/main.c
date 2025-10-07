@@ -58,6 +58,30 @@ void	load_image(t_game game)
 
 int	main(void)
 {
+	/* 
+	* Goal : 
+			G1) write a separate file importing a library and return a game object for use.
+			G2) use G1 to display first image
+			G3) based on G2, extend the function to react on 'A', 'S', 'W', 'D'
+			G4) define the end game scenario and its condition
+			G5) implement the algorithm to detect entering the G4. End program.
+	* TODO :
+			G1) 
+			   TG1.1) create new file
+			   TG1.2) include the library and test build the file with dummy usage
+			   TG1.3) extend the dummy , using real functional
+
+			G2) ...
+
+	
+	*/
+
+
+
+
+
+
+
 	t_game	game;
 	int		y;
 	int		w;
@@ -78,9 +102,11 @@ int	main(void)
 	game.win = mlx_new_window(game.mlx, game.width * 64,
 			game.height * 64, "so_long");
 	if (!game.win)
+	// TG1.1
 		return (1);
 	load_image(game);
 	draw_map(&game);
+	// TG1.2
 	mlx_loop(game.mlx);
 	return (0);
 }
