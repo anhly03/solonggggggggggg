@@ -44,6 +44,7 @@ typedef struct s_game
 int	counter_check(char **map, int *counter_p, int *counter_c, int *counter_e);
 int	char_check(char **map);
 int	shape_check(char **map);
+int	check_top_bottom(char *line);
 int	wall_check(char **map);
 
 #endif

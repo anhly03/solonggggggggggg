@@ -50,6 +50,7 @@ int	char_check(char **map)
 	char	*allowed;
 	int		check;
 
+	allowed = "01PCE";
 	height = 0;
 	while (map[height])
 	{
@@ -111,25 +112,19 @@ int	wall_check(char **map)
 {
 	int	height;
 	int	width;
-	int	i;
 	int	len;
+	int	i;
 
 	height = 0;
 	while (map[height])
 		height++;
-	width = 0;
-	while (map[0][width] && map[0][width] != '\n')
-		if (map[0][width++] != '1')
-			return (perror("Invalid wall:"), 0);
-	width = 0;
-	while (map[height - 1][width] && map[height - 1][width] != '\n')
-		if (map[height - 1][width++] != '1')
-			return (perror("Invalid wall:"), 0);
 	len = ft_strlen(map[0]);
-	if ((map[0][len - 1]) == '\n')
+	if (map[0][len - 1] == '\n')
 		len--;
+	if (!check_top_bottom(map[0]) || !check_top_bottom(map[height - 1]))
+		return (0);
 	i = 1;
-	while (i < (height - 1))
+	while (i < height -1)
 	{
 		if (map[i][0] != '1' || map[i][len - 1] != '1')
 			return (perror("Invalid wall:"), 0);

@@ -24,7 +24,7 @@ int key_hook(int keycode, t_game *game)
 		return (0);
 	if (current == '0' || current == 'C')
 	{
-		if (next == 'C')
+		if (current == 'C')
 			game->c_count--;
 		game->map[game->y_pos][game->x_pos] = '0';
 		game->x_pos = new_x;

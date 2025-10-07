@@ -24,17 +24,22 @@ void	find_player(char **map, int *x_pos, int *y_pos)
 	}
 }
 
-void    flood_fill(char **map, int x, int y)
+void	flood_fill(char **map, int x, int y)
 {
-    if (x < 0 || y < 0 || map[y] == NULL || map[y][x] == '\0')
-        return ;
-    if (map[y][x] == '1' || map[y][x] == 'V')
-        return ;
-    map[y][x] = 'V';
-    flood_fill(map, x + 1, y);
-    flood_fill(map, x - 1, y);
-    flood_fill(map, x, y + 1);
-    flood_fill(map, x, y - 1);
+	int	width;
+
+	if (y < 0 || map[y] == NULL)
+		return ;
+	width = ft_strlen(map[y]);
+	if (x < 0 || x >= width)
+		return ;
+	if (map[y][x] == '1' || map[y][x] == 'V' || map[y][x] == '\n')
+		return ;
+	map[y][x] = 'V';
+	flood_fill(map, x + 1, y);
+	flood_fill(map, x - 1, y);
+	flood_fill(map, x, y + 1);
+	flood_fill(map, x, y - 1);
 }
 
 char    **map_copy(char **map)
@@ -52,6 +57,8 @@ char    **map_copy(char **map)
     while (map[height])
     {
         cpy[height] = ft_strdup(map[height]);
+        if (!cpy[height])
+			return (free_map(cpy), NULL);
         height++;
     }
     cpy[height] = NULL;
