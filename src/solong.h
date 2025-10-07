@@ -46,5 +46,10 @@ int	char_check(char **map);
 int	shape_check(char **map);
 int	check_top_bottom(char *line);
 int	wall_check(char **map);
+void	find_player(char **map, int *x_pos, int *y_pos);
+void	flood_fill(char **map, int x, int y);
+char    **map_copy(char **map);
+int accessible_check(char **map);
+int valid_path_check(char **map);
 
 #endif
