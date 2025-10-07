@@ -6,7 +6,7 @@
 /*   By: phly <phly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 16:27:25 by phly              #+#    #+#             */
-/*   Updated: 2025/10/07 18:34:11 by phly             ###   ########.fr       */
+/*   Updated: 2025/10/07 18:55:37 by phly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	destroy_images(t_game *game)
 
 void	cleanup_and_exit(t_game *game)
 {
-	free_map(game);
+	free_map(game->map);
 	destroy_images(game);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);

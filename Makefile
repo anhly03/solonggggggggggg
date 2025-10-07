@@ -6,26 +6,27 @@
 #    By: phly <phly@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/21 13:43:11 by phly              #+#    #+#              #
-#    Updated: 2025/09/23 18:00:22 by phly             ###   ########.fr        #
+#    Updated: 2025/10/07 18:59:28 by phly             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 COMPILER = 	cc
-CFLAGS = 	-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I./minilibx-linux -I./ft_printf -I./get_next_line
 NAME = 		so_long
 
 MLX = ./minilibx-linux
 GNL = ./get_next_line
 PRINTF = ./ft_printf
+SRC = ./src
 
-SRCS =	cleanup_and_exit.c final.c game_play.c ..../tu tu bo sung
+SRCS =	$(SRC)/cleanup_and_exit.c $(SRC)/key_hook.c $(SRC)/main.c $(SRC)/map_check.c $(SRC)/map.c $(SRC)/path_check.c $(SRC)/render.c
 OBJS = $(SRCS:.c=.o)
 
 GNL_SRCS = $(GNL)/get_next_line.c $(GNL)/get_next_line_utils.c
 GNL_OBJS = $(GNL_SRCS:.c=.o)
 GNL_LIB = libgnl.a
 
-PRINTF_SRCS = $(PRINTF)/ft_printchar.c $(PRINTF)/ft_printhex.c $(PRINTF)/print_number.c $(PRINTF)/ft_printpercent.c\
+PRINTF_SRCS = $(PRINTF)/ft_printchar.c $(PRINTF)/ft_printhex.c $(PRINTF)/ft_printnumber.c $(PRINTF)/ft_printpercent.c\
 				$(PRINTF)/ft_printstr.c $(PRINTF)/ft_printunsigned.c $(PRINTF)/ft_printvoid.c $(PRINTF)/handle.c
 PRINTF_OBJS = $(PRINTF_SRCS:.c=.o)
 PRINTF_LIB = libftprintf.a
@@ -33,7 +34,7 @@ PRINTF_LIB = libftprintf.a
 all: $(GNL_LIB) $(PRINTF_LIB) $(NAME)
 
 $(NAME): $(OBJS) $(GNL_LIB) $(PRINTF_LIB)
-    $(CC) $(CFLAGS) $(OBJS) -L$(MLX) -lmlx -L. -lgnl -lftprintf -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -L$(MLX) -lmlx -L. -lgnl -lftprintf -lXext -lX11 -lm -lz -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -I$(MLX) -c $< -o $@

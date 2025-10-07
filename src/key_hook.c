@@ -6,12 +6,13 @@
 /*   By: phly <phly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 16:27:59 by phly              #+#    #+#             */
-/*   Updated: 2025/10/07 18:35:02 by phly             ###   ########.fr       */
+/*   Updated: 2025/10/07 19:00:05 by phly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "solong.h"
+#include "libftprintf.h"
 
 void	get_new_position(int keycode, int *x, int *y)
 {
