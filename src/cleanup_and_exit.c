@@ -6,7 +6,7 @@
 /*   By: phly <phly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 16:27:25 by phly              #+#    #+#             */
-/*   Updated: 2025/10/07 16:27:56 by phly             ###   ########.fr       */
+/*   Updated: 2025/10/07 18:25:28 by phly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,14 @@ void	destroy_images(t_game *game)
 void	cleanup_and_exit(t_game *game)
 {
 	free_map(game);
-	destroy_image(game);
+	destroy_images(game);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
+	if (game->mlx)
+	{
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+	}
 	exit(0);
 }
 
@@ -48,3 +53,4 @@ int	handle_x_button(t_game *game)
 	cleanup_and_exit(game);
 	return (0);
 }
+//tam xong
