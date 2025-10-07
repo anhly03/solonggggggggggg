@@ -6,7 +6,7 @@
 /*   By: phly <phly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 18:03:16 by phly              #+#    #+#             */
-/*   Updated: 2025/10/05 18:18:41 by phly             ###   ########.fr       */
+/*   Updated: 2025/10/07 16:27:17 by phly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,16 @@ typedef struct s_game
 	int		steps;
 }	t_game;
 
-int	counter_check(char **map, int *counter_p, int *counter_c, int *counter_e);
-int	char_check(char **map);
-int	shape_check(char **map);
-int	check_top_bottom(char *line);
-int	wall_check(char **map);
+int		counter_check(char **map, int *counter_p,
+			int *counter_c, int *counter_e);
+int		char_check(char **map);
+int		shape_check(char **map);
+int		check_top_bottom(char *line);
+int		wall_check(char **map);
 void	find_player(char **map, int *x_pos, int *y_pos);
 void	flood_fill(char **map, int x, int y);
-char    **map_copy(char **map);
-int accessible_check(char **map);
-int valid_path_check(char **map);
+char	**map_copy(char **map);
+int		accessible_check(char **map);
+int		valid_path_check(char **map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: phly <phly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 15:55:34 by phly              #+#    #+#             */
-/*   Updated: 2025/10/05 18:01:12 by phly             ###   ########.fr       */
+/*   Updated: 2025/10/07 16:31:37 by phly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	open_map(char *file_name)
 	}
 	return (fd);
 }
+
 int	free_map(char **map)
 {
 	int	i;
@@ -46,11 +47,12 @@ int	free_map(char **map)
 	}
 	free(map);
 }
+
 char	**read_map(char *file_name)
 {
-	int	fd;
-	char *line;
-	t_game game;
+	int		fd;
+	char	*line;
+	t_game	game;
 
 	game.height = 0;
 	fd = open(file_name, O_RDONLY);
