@@ -6,7 +6,7 @@
 /*   By: phly <phly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 16:27:25 by phly              #+#    #+#             */
-/*   Updated: 2025/10/07 18:25:28 by phly             ###   ########.fr       */
+/*   Updated: 2025/10/07 18:34:11 by phly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,4 @@ int	handle_x_button(t_game *game)
 	cleanup_and_exit(game);
 	return (0);
 }
-//tam xong
+//tam xong, da add vao header

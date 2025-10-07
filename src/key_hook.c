@@ -6,7 +6,7 @@
 /*   By: phly <phly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 16:27:59 by phly              #+#    #+#             */
-/*   Updated: 2025/10/07 18:13:59 by phly             ###   ########.fr       */
+/*   Updated: 2025/10/07 18:35:02 by phly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,4 @@ int	key_hook(int keycode, t_game *game)
 		exit_handle(game);
 	return (0);
 }
-//tam xong voi gpt
+//tam xong voi gpt, da add vao header

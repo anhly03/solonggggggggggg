@@ -6,7 +6,7 @@
 /*   By: phly <phly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 16:28:55 by phly              #+#    #+#             */
-/*   Updated: 2025/10/07 16:33:02 by phly             ###   ########.fr       */
+/*   Updated: 2025/10/07 18:36:48 by phly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,4 @@ int	valid_path_check(char **map)
 	free_map(map_copied);
 	return (result);
 }
-//da check voi con gpt
+//da check voi con gpt, da add vao header

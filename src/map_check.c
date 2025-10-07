@@ -6,7 +6,7 @@
 /*   By: phly <phly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 18:53:11 by phly              #+#    #+#             */
-/*   Updated: 2025/10/07 16:32:32 by phly             ###   ########.fr       */
+/*   Updated: 2025/10/07 18:35:33 by phly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,5 @@ int	wall_check(char **map)
 	return (1);
 }
 
-//da check voi con chatgpt, da kiem, khoan kiem lai
+//da check voi con chatgpt, da kiem, khoan kiem lai, da add vao header
 

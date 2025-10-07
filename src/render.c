@@ -6,7 +6,7 @@
 /*   By: phly <phly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 16:34:47 by phly              #+#    #+#             */
-/*   Updated: 2025/10/07 16:41:13 by phly             ###   ########.fr       */
+/*   Updated: 2025/10/07 18:37:35 by phly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,4 @@ void	draw_map(t_game *game)
 // 	return (0);
 // }
 
-//da check voi gpt
+//da check voi gpt, da add vao header
